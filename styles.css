@@ -1,1 +1,45 @@
 /* styles */
+* {
+    box-sizing: border-box;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    width: 550px;
+    height: 620px;
+    margin: auto;
+    border-radius: 25px;
+    background-color: rgb(203, 203, 203);
+}
+
+#screen {
+    height: 15%;
+    margin: 30px 40px;
+    padding: 15px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-size: 40px;
+    background-color: rgb(108, 108, 108);
+}
+
+#buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+    height: 85%;
+    padding: 10px 30px 40px 30px;
+}
+
+button {
+    font-size: 30px;
+    flex: 0 0 22%;
+    height: 70px;
+    border-radius: 35px;
+}
+
+#back, #clear {
+    flex: 0 0 47%;
+}
