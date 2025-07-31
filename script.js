@@ -62,15 +62,14 @@ buttons.addEventListener("click", (event) => {
             };
             break;
         case "operator":
-            operator = buttonID;
-            switch:
+            if (operator === "") operator = buttonID;
+            
             break;
         case "clear":
             break;
         case "back":
             break;
         default:
-            screen.textContent = "ERROR";
             break;
     }
 });
