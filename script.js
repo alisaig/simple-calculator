@@ -1,6 +1,6 @@
 // operations
-let num1 = 0;
-let num2 = 0;
+let num1 = "";
+let num2 = "";
 let operator = "";
 let clear = true;
 
@@ -32,13 +32,13 @@ function divide(a, b) {
 // General operation function that leads to the correct operation function
 function operate(num1,num2, operator) {
     switch(operator) {
-        case "+":
+        case "add":
             return add(num1, num2);
-        case "-":
+        case "subtract":
             return subtract(num1, num2);
-        case "*":
+        case "multiply":
             return multiply(num1, num2);
-        case "/":
+        case "divide":
             return divide(num1, num2);
         default:
             return "ERROR";
@@ -52,13 +52,18 @@ buttons.addEventListener("click", (event) => {
 
     switch(buttonClass) {
         case "num":
-            buttonID = parseInt(buttonID[1]);
-            if (clear) num1 = buttonID;
-            else num2 = buttonID;
-            screen.textContent = buttonID;
+            buttonID = buttonID[1];
+            if (clear) {
+                num1 = num1 + buttonID;
+                screen.textContent = num1;
+            } else {
+                num2 = num2 + buttonID;
+                screen.textContent = num2;
+            };
             break;
         case "operator":
             operator = buttonID;
+            switch:
             break;
         case "clear":
             break;
