@@ -40,6 +40,6 @@ button {
     border-radius: 35px;
 }
 
-#back, #clear {
+.back, .clear {
     flex: 0 0 47%;
 }

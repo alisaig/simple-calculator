@@ -2,6 +2,7 @@
 let num1 = 0;
 let num2 = 0;
 let operator = "";
+let clear = true;
 
 // const nums = document.querySelectorAll(".num");
 // const operators = document.querySelectorAll(".operator");
@@ -45,30 +46,26 @@ function operate(num1,num2, operator) {
 }
 
 buttons.addEventListener("click", (event) => {
-    buttonID = event.target.className;
-    buttonClass = event.target.id;
-    
-    switch(button) {
-        case
+    const buttonClass = event.target.className;
+    let buttonID = event.target.id;
+    console.log(buttonID, buttonClass);
+
+    switch(buttonClass) {
+        case "num":
+            buttonID = parseInt(buttonID[1]);
+            if (clear) num1 = buttonID;
+            else num2 = buttonID;
+            screen.textContent = buttonID;
+            break;
+        case "operator":
+            operator = buttonID;
+            break;
+        case "clear":
+            break;
+        case "back":
+            break;
+        default:
+            screen.textContent = "ERROR";
+            break;
     }
-})
-
-
-nums.addEventListener("click", (event) => {
-    key = event.target.id;
-    screen.textContent = key;
-
-
-    function playGame(event) {
-    const humanSelection = event.target.id;
-    const computerSelection = getComputerChoice();
-
-    playRound(humanSelection, computerSelection);
-
-    if (humanScore === rounds || computerScore === rounds) {
-        buttons.removeEventListener("click", playGame);
-
-        update.textContent = (humanScore === 5) ? "You won!" : "You lost!";
-    }
-}
-})
+});
