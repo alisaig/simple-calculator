@@ -51,7 +51,6 @@ function operate(num1,num2, operator) {
 buttons.addEventListener("click", (event) => {
     const buttonClass = event.target.className;
     let buttonID = event.target.id;
-    console.log(buttonID, buttonClass);
 
     switch(buttonClass) {
         case "num":
@@ -65,16 +64,16 @@ buttons.addEventListener("click", (event) => {
             };
             break;
         case "operator":
-            if (operator === "") {
-                operator = buttonID;
-                clear = false;
-            };
             if (!(num2 === "")) {
                 num1 = operate(num1, num2, operator);
                 num2 = "";
                 operator = "";
                 screen.textContent = num1;
-            } 
+            }
+            if (operator === "") {
+                operator = buttonID;
+                clear = false;
+            };
             break;
         case "clear":
             clear = true;
