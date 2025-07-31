@@ -31,6 +31,9 @@ function divide(a, b) {
 
 // General operation function that leads to the correct operation function
 function operate(num1,num2, operator) {
+    num1 = parseInt(num1);
+    num2 = parseInt(num2);
+    
     switch(operator) {
         case "add":
             return add(num1, num2);
@@ -62,10 +65,22 @@ buttons.addEventListener("click", (event) => {
             };
             break;
         case "operator":
-            if (operator === "") operator = buttonID;
-            
+            if (operator === "") {
+                operator = buttonID;
+                clear = false;
+            };
+            if (!(num2 === "")) {
+                num1 = operate(num1, num2, operator);
+                num2 = "";
+                operator = "";
+                screen.textContent = num1;
+            } 
             break;
         case "clear":
+            clear = true;
+            num1 = "";
+            num2 = "";
+            screen.textContent = "";
             break;
         case "back":
             break;
