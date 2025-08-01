@@ -33,8 +33,8 @@ function divide(a, b) {
 // General operation function that leads to the correct operation function
 function operate(a, b, operator) {
     // Variable values only converted to numbers at this point as before they're strings to correctly show on the screen
-    // a = parseInt(a);
-    // b = parseInt(b);
+    a = Number(a);
+    b = Number(b);
     
     switch(operator) {
         case "add":
@@ -50,6 +50,13 @@ function operate(a, b, operator) {
     }
 }
 
+function clearAll() {
+    clear = true;
+    num1 = "";
+    num2 = "";
+    operator = "";
+}
+
 // Event listener for any of the buttons clicked within the #buttons container
 buttons.addEventListener("click", (event) => {
     const buttonClass = event.target.className;
@@ -63,6 +70,9 @@ buttons.addEventListener("click", (event) => {
             // Value for num1 only directly set by button either:
             // 1. when opening the page
             // 2. after clicking the clear button
+            if (lastClickClass === "equals") {
+                clearAll();
+            };
             if (clear) {
                 num1 = num1 + buttonID;
                 screen.textContent = num1;
@@ -100,10 +110,7 @@ buttons.addEventListener("click", (event) => {
             }
             break;
         case "clear":
-            clear = true;
-            num1 = "";
-            num2 = "";
-            operator = "";
+            clearAll();
             screen.textContent = "";
             break;
         case "back":
