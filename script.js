@@ -1,13 +1,14 @@
-// operations
+// Global variables
 let num1 = "";
 let num2 = "";
 let operator = "";
+// Boolean variable signifying that it's the first operation either:
+// 1. when opening the page
+// 2. after clicking the clear button
 let clear = true;
+let lastClickClass = "";
 
-// const nums = document.querySelectorAll(".num");
-// const operators = document.querySelectorAll(".operator");
-// const clear = document.getElementById("clear");
-// const back = document.getElementById("back");
+// Select relevant DOM elements
 const buttons = document.querySelector("#buttons");
 const screen = document.querySelector("#screen");
 
@@ -31,8 +32,9 @@ function divide(a, b) {
 
 // General operation function that leads to the correct operation function
 function operate(a, b, operator) {
-    a = parseInt(a);
-    b = parseInt(b);
+    // Variable values only converted to numbers at this point as before they're strings to correctly show on the screen
+    // a = parseInt(a);
+    // b = parseInt(b);
     
     switch(operator) {
         case "add":
@@ -48,13 +50,19 @@ function operate(a, b, operator) {
     }
 }
 
+// Event listener for any of the buttons clicked within the #buttons container
 buttons.addEventListener("click", (event) => {
     const buttonClass = event.target.className;
+    // ID only relevant for the digit("num") and operator buttons as there are multiple of them
     let buttonID = event.target.id;
 
+    // What button was clicked determined by checking its class
     switch(buttonClass) {
         case "num":
             buttonID = buttonID[1];
+            // Value for num1 only directly set by button either:
+            // 1. when opening the page
+            // 2. after clicking the clear button
             if (clear) {
                 num1 = num1 + buttonID;
                 screen.textContent = num1;
@@ -70,7 +78,9 @@ buttons.addEventListener("click", (event) => {
                 operator = "";
                 screen.textContent = num1;
             }
-            if (operator === "") {
+            // Takes care of situation when multiple operator buttons are pressed immediately in succession
+            // Only the first operator pressed is registered
+            if (operator === "" || lastClickClass === "equals") {
                 operator = buttonID;
                 clear = false;
             };
@@ -78,12 +88,14 @@ buttons.addEventListener("click", (event) => {
         case "equals":
             if (!(num2 === "")) {
                 num1 = operate(num1, num2, operator);
-                num2 = "";
-                operator = "";
+                // num2 = "";
+                // operator = "";
                 screen.textContent = num1;
+            // Takes care of situation when equals sign is clicked right after an operator button and before another number button so num2 is empty
+            // Operation just happens between two num1s instead
             } else {
+                num2 = num1;
                 num1 = operate(num1, num1, operator);
-                operator = "";
                 screen.textContent = num1;
             }
             break;
@@ -99,4 +111,6 @@ buttons.addEventListener("click", (event) => {
         default:
             break;
     }
+
+    lastClickClass = buttonClass;
 });
