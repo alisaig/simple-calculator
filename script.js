@@ -30,19 +30,19 @@ function divide(a, b) {
 }
 
 // General operation function that leads to the correct operation function
-function operate(num1,num2, operator) {
-    num1 = parseInt(num1);
-    num2 = parseInt(num2);
+function operate(a, b, operator) {
+    a = parseInt(a);
+    b = parseInt(b);
     
     switch(operator) {
         case "add":
-            return add(num1, num2);
+            return add(a, b);
         case "subtract":
-            return subtract(num1, num2);
+            return subtract(a, b);
         case "multiply":
-            return multiply(num1, num2);
+            return multiply(a, b);
         case "divide":
-            return divide(num1, num2);
+            return divide(a, b);
         default:
             return "ERROR";
     }
@@ -75,10 +75,23 @@ buttons.addEventListener("click", (event) => {
                 clear = false;
             };
             break;
+        case "equals":
+            if (!(num2 === "")) {
+                num1 = operate(num1, num2, operator);
+                num2 = "";
+                operator = "";
+                screen.textContent = num1;
+            } else {
+                num1 = operate(num1, num1, operator);
+                operator = "";
+                screen.textContent = num1;
+            }
+            break;
         case "clear":
             clear = true;
             num1 = "";
             num2 = "";
+            operator = "";
             screen.textContent = "";
             break;
         case "back":
