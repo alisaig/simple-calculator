@@ -70,9 +70,7 @@ buttons.addEventListener("click", (event) => {
             // Value for num1 only directly set by button either:
             // 1. when opening the page
             // 2. after clicking the clear button
-            if (lastClickClass === "equals") {
-                clearAll();
-            };
+            if (lastClickClass === "equals") clearAll();
             if (clear) {
                 num1 = num1 + buttonID;
                 screen.textContent = num1;
@@ -82,7 +80,7 @@ buttons.addEventListener("click", (event) => {
             };
             break;
         case "operator":
-            if (!(num2 === "")) {
+            if (!(num2 === "") && (lastClickClass != "equals")) {
                 num1 = operate(num1, num2, operator);
                 num2 = "";
                 operator = "";
