@@ -22,6 +22,7 @@
     align-items: center;
     font-size: 40px;
     background-color: rgb(108, 108, 108);
+    overflow: scroll;
 }
 
 #buttons {
