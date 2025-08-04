@@ -78,6 +78,7 @@ function screenDisplay(dig) {
         } else {
             dig = dig.toFixed(12-decimalIndx-1);
             digStr = dig.toString();
+            digStr = digStr.replace(/\.?0+$/, "");
         }
     }
     return digStr;
@@ -141,7 +142,7 @@ buttons.addEventListener("click", (event) => {
                 num2 = num2 === ""? "0." : num2 + ".";
                 screen.textContent = num2;
             };
-            break
+            break;
         case "clear":
             clearAll();
             screen.textContent = "";
