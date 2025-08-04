@@ -132,6 +132,16 @@ buttons.addEventListener("click", (event) => {
                 screen.textContent = screenDisplay(num1);
             }
             break;
+        case "point":
+            if (clear && !num1.includes(".")) {
+                num1 = num1 === ""? "0." : num1 + ".";
+                screen.textContent = num1;
+            };
+            if (!clear && !num2.includes(!".")) {
+                num2 = num2 === ""? "0." : num2 + ".";
+                screen.textContent = num2;
+            };
+            break
         case "clear":
             clearAll();
             screen.textContent = "";
