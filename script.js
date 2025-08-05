@@ -148,6 +148,14 @@ buttons.addEventListener("click", (event) => {
             screen.textContent = "";
             break;
         case "back":
+            if (clear) {
+                num1 = num1.slice(0,-1);
+                screen.textContent = num1;
+            }
+            else {
+                num2 = num2.slice(0,-1);
+                screen.textContent = num2;
+            };
             break;
         default:
             break;
