@@ -6,6 +6,8 @@ let operator = "";
 // 1. when opening the page
 // 2. after clicking the clear button
 let clear = true;
+// Variable mostly relevant for the edge cases where buttons aren't clicked in the expected order
+// e.g. clicking number -> operation -> equals -> equals -> number
 let lastClickClass = "";
 
 // Select relevant DOM elements
@@ -27,6 +29,7 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if (b === 0) {
+        // Attempting to divide by 0 is treated the same as pressing clear
         clear = true;
         return "ERROR. DON'T DIVIDE BY 0!";
     };
@@ -49,10 +52,13 @@ function operate(a, b, operator) {
         case "divide":
             return divide(a, b);
         default:
+            // Very unlikely for default to execute, but procedure exists just in case
+            clear = true;
             return "ERROR";
     }
 }
 
+// Function to clear all variables to avoid repetition
 function clearAll() {
     clear = true;
     num1 = "";
@@ -60,6 +66,8 @@ function clearAll() {
     operator = "";
 }
 
+// Handle the display of numbers after an operation is performed
+// Limits numbers shown to 12 characters, negative sign not included
 function screenDisplay(dig) {
     let digStr = dig.toString()
     const digStrLen = digStr.length;
@@ -112,8 +120,14 @@ buttons.addEventListener("click", (event) => {
                 num2 = "";
                 operator = "";
                 screen.textContent = screenDisplay(num1);
-            }
-            // Takes care of situation when multiple operator buttons are pressed immediately in succession
+            };
+            // Handle situation where user wants the first number entered at the beginning/after a clear to be negative
+            if (buttonID === "subtract" && num1 === "") {
+                num1 = "-";
+                screen.textContent = num1;
+                break;
+            };
+            // Handle situation when multiple operator buttons are pressed immediately in succession
             // Only the first operator pressed is registered
             if (operator === "" || lastClickClass === "equals") {
                 operator = buttonID;
@@ -138,7 +152,7 @@ buttons.addEventListener("click", (event) => {
                 num1 = num1 === ""? "0." : num1 + ".";
                 screen.textContent = num1;
             };
-            if (!clear && !num2.includes(!".")) {
+            if (!clear && !num2.includes(".")) {
                 num2 = num2 === ""? "0." : num2 + ".";
                 screen.textContent = num2;
             };
