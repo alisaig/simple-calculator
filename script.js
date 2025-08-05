@@ -127,6 +127,11 @@ buttons.addEventListener("click", (event) => {
                 screen.textContent = num1;
                 break;
             };
+            if (buttonID === "subtract" && operator !== "" && operator !== "subtract" && num2 === "") {
+                num2 = "-";
+                screen.textContent = num2;
+                break;
+            };
             // Handle situation when multiple operator buttons are pressed immediately in succession
             // Only the first operator pressed is registered
             if (operator === "" || lastClickClass === "equals") {
