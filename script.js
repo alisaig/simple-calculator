@@ -80,12 +80,14 @@ function screenDisplay(dig) {
             // if ((dig/(10**(digStrLen-1))).toString().length > 9) dig = dig.toExponential(7);
             dig = dig.toExponential(6);
             digStr = dig.toString();
+            // Get rid of trailing 0s
             digStr = digStr.replace(/\.?0+e/, "e");
 
         // Handle numbers that have overly long decimals
         } else {
             dig = dig.toFixed(12-decimalIndx-1);
             digStr = dig.toString();
+            // Get rid of trailing 0s
             digStr = digStr.replace(/\.?0+$/, "");
         }
     }
@@ -101,6 +103,7 @@ buttons.addEventListener("click", (event) => {
     // What button was clicked determined by checking its class
     switch(buttonClass) {
         case "num":
+            // Get rid of the "n" in buttonID
             buttonID = buttonID.slice(1);
             // Value for num1 only directly set by button either:
             // 1. when opening the page
@@ -115,6 +118,7 @@ buttons.addEventListener("click", (event) => {
             };
             break;
         case "operator":
+            // Default operation execution where there 3 key global variables are all not empty
             if (!(num2 === "") && (lastClickClass != "equals")) {
                 num1 = operate(num1, num2, operator);
                 num2 = "";
@@ -127,6 +131,7 @@ buttons.addEventListener("click", (event) => {
                 screen.textContent = num1;
                 break;
             };
+            // Handle situation where user wants second number to be negative (but not to use the subtraction operator)
             if (buttonID === "subtract" && operator !== "" && operator !== "subtract" && num2 === "") {
                 num2 = "-";
                 screen.textContent = num2;
@@ -141,6 +146,7 @@ buttons.addEventListener("click", (event) => {
             };
             break;
         case "equals":
+            // Default operation execution where there 3 key global variables are all not empty
             if (!(num2 === "")) {
                 num1 = operate(num1, num2, operator);
                 screen.textContent = screenDisplay(num1);
@@ -153,6 +159,7 @@ buttons.addEventListener("click", (event) => {
             }
             break;
         case "point":
+            // Add decimal point to number entered, but allow only one max
             if (clear && !num1.includes(".")) {
                 num1 = num1 === ""? "0." : num1 + ".";
                 screen.textContent = num1;
@@ -167,6 +174,7 @@ buttons.addEventListener("click", (event) => {
             screen.textContent = "";
             break;
         case "back":
+            // Backspace/clear the last character entered
             if (clear) {
                 num1 = num1.slice(0,-1);
                 screen.textContent = num1;

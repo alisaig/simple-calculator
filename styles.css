@@ -6,8 +6,8 @@
 #container {
     display: flex;
     flex-direction: column;
-    width: 550px;
-    height: 680px;
+    width: 380px;
+    height: 470px;
     margin: auto;
     border-radius: 25px;
     background-color: rgb(203, 203, 203);
@@ -15,12 +15,12 @@
 
 #screen {
     height: 15%;
-    margin: 40px 40px 30px 40px;
+    margin: 40px 40px 25px 40px;
     padding: 15px;
     display: flex;
     justify-content: end;
     align-items: center;
-    font-size: 40px;
+    font-size: 30px;
     background-color: rgb(108, 108, 108);
     overflow: scroll;
 }
@@ -30,14 +30,14 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: space-between;
-    height: 85%;
-    padding: 10px 30px 50px 30px;
+    height: 90%;
+    padding: 0px 30px 35px 30px;
 }
 
 button {
     font-size: 30px;
     flex: 0 0 23%;
-    height: 70px;
+    height: 50px;
     border-radius: 35px;
 }
 
