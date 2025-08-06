@@ -1,6 +1,15 @@
 /* styles */
 * {
     box-sizing: border-box;
+    color: rgb(51, 51, 51);
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    font-size: 40px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 #container {
@@ -10,7 +19,9 @@
     height: 470px;
     margin: auto;
     border-radius: 25px;
-    background-color: rgb(203, 203, 203);
+    border: 4px solid;
+    border-color: rgb(182, 137, 162);
+    background-color: rgb(224, 224, 224);
 }
 
 #screen {
@@ -21,8 +32,12 @@
     justify-content: end;
     align-items: center;
     font-size: 30px;
-    background-color: rgb(108, 108, 108);
-    overflow: scroll;
+    background-color: rgb(153, 153, 153);
+    border-radius: 10px;
+    border: 2px solid;
+    overflow-x: auto;
+    overflow-y: hidden;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 #buttons {
@@ -43,4 +58,45 @@ button {
 
 .back, .clear {
     flex: 0 0 47%;
+}
+
+@keyframes blink {
+    0%      { opacity: 1;}
+    50%     { opacity: 0;}
+    100%    { opacity: 1;}  
+}
+
+#cursor {
+    animation: blink 1s step-start infinite;
+    font-weight: bold;
+}
+
+/* Adding colors to buttons to differentiate the different categories */
+
+#n7, #n8, #n9 {
+    background-color: rgb(174, 217, 255);
+}
+
+#n4, #n5, #n6 {
+    background-color: rgb(216, 255, 209);
+}
+
+#n1, #n2, #n3 {
+    background-color: rgb(255, 251, 200);
+}
+
+#n0, #n1, #n2, #n3 {
+    background-color: rgb(255, 251, 200);
+}
+
+.operator {
+    background-color: rgb(255, 201, 205);
+}
+
+.point, .equals {
+    background-color: rgb(255, 106, 76);
+}
+
+.clear, .back {
+    background-color: rgb(236, 205, 255);
 }
