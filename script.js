@@ -190,3 +190,58 @@ buttons.addEventListener("click", (event) => {
 
     lastClickClass = buttonClass;
 });
+
+// Keyboard support that works by simulating a click on certain buttons when pressing certain keys
+// e.g. pressing the "=" or "Enter" key simulates pressing the clear button on the calculator
+document.addEventListener("keydown", (event) => {
+    // Record which key was pressed
+    const keyDown = event.key.toLowerCase();
+
+    switch (keyDown) {
+        case "0":
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+        case "6":
+        case "7":
+        case "8":
+        case "9":
+            document.querySelector(`#n${keyDown}`).click();
+            break;
+        case "/":
+            document.querySelector("#divide").click();
+            break;
+        case "*":
+            document.querySelector("#multiply").click();
+            break;
+        case "-":
+            document.querySelector("#subtract").click();
+            break;
+        case "+":
+            document.querySelector("#add").click();
+            break;
+        case ".":
+            document.querySelector(".point").click();
+            break;
+        case "=":
+        case "enter":
+            document.querySelector(".equals").click();
+            break;
+        case "escape":
+        case "c":
+            document.querySelector(".clear").click();
+            break;
+        case "backspace":
+        case "b":
+            document.querySelector(".back").click();
+            break;
+        default:
+            break;
+    };  
+});
+
+document.addEventListener("keydown", (e) => {
+  console.log(e.key);  // Check exactly what string is returned
+});
