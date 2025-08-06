@@ -54,12 +54,20 @@ button {
     flex: 0 0 23%;
     height: 50px;
     border-radius: 35px;
+    cursor: pointer;
+    box-shadow: 0 5px rgb(179, 179, 179);
+}
+
+button:active {
+    box-shadow: none;
+    transform: translateY(3px);
 }
 
 .back, .clear {
     flex: 0 0 47%;
 }
 
+/* Blinking cursor animation for when page is first opened */
 @keyframes blink {
     0%      { opacity: 1;}
     50%     { opacity: 0;}
@@ -72,7 +80,6 @@ button {
 }
 
 /* Adding colors to buttons to differentiate the different categories */
-
 #n7, #n8, #n9 {
     background-color: rgb(174, 217, 255);
 }
