@@ -241,7 +241,3 @@ document.addEventListener("keydown", (event) => {
             break;
     };  
 });
-
-document.addEventListener("keydown", (e) => {
-  console.log(e.key);  // Check exactly what string is returned
-});
